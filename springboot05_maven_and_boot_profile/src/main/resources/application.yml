@@ -1,0 +1,42 @@
+logging:
+  level:
+    root: info
+    #debug|info，根据需求自行配置
+#设置启用的环境
+#https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features
+#命令行带参数启动SpringBoot（临时修改配置端口）
+#java -jar springboot04_profile-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+#命令行带参数启动SpringBoot（临时参数修改端口）
+#java -jar springboot04_profile-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --server.port=88
+#java -jar springboot04_profile-0.0.1-SNAPSHOT.jar --server.port=88
+
+spring:
+  profiles:
+    active: ${profile.active}
+
+---
+#开发
+spring:
+  profiles: dev
+server:
+  port: 80
+
+---
+#生产
+spring:
+  profiles: pro
+server:
+  port: 81
+
+---
+#测试
+spring:
+  profiles: test
+server:
+  port: 82
+---
+#推荐写法
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
